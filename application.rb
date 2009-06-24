@@ -1,22 +1,43 @@
 require 'rubygems'
-require 'sinatra'
 require 'environment'
+require 'sinatra'
+require 'builder'
+require 'haml'
+require 'twitter'
+
+BASE_URL = 'http://semantictweet.com'
+
+mime :rdf, 'application/rdf+xml'
 
 configure do
   set :views, "#{File.dirname(__FILE__)}/views"
 end
 
-error do
-  e = request.env['sinatra.error']
-  Kernel.puts e.backtrace.join("\n")
-  'Application error'
-end
-
-helpers do
-  # add your helpers here
-end
-
-# root page
 get '/' do
-  haml :root
+  haml :index
+end
+
+get '/screen_name' do
+  redirect "/#{params[:screen_name]}"
+end
+
+get '/:screen_name' do
+  @twitter = Twitter.new(params[:screen_name])
+  if @twitter.exists?
+    content_type :rdf
+    builder :foaf
+  else
+    raise not_found
+  end
+end
+
+error do
+  e = require.env['sinatra.error']
+  Kernel.puts e.backtrace.join("\n")
+  'Appliation error'
+end
+
+not_found do
+  @screen_name = params[:screen_name]
+  haml :'404'
 end

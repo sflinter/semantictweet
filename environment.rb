@@ -1,8 +1,6 @@
+ENV['GEM_PATH'] = '/home/flintero/gems:/usr/lib/ruby/gems/1.8'
+
 require 'rubygems'
-require 'dm-core'
-require 'dm-timestamps'
-require 'dm-validations'
-require 'dm-aggregates'
 require 'haml'
 require 'ostruct'
 
@@ -10,12 +8,10 @@ require 'sinatra' unless defined?(Sinatra)
 
 configure do
   SiteConfig = OpenStruct.new(
-                 :title => 'Your Application Name',
-                 :author => 'Your Name',
-                 :url_base => 'http://localhost:4567/'
+                 :title => 'SemanticTweet',
+                 :author => 'Steve Flinter',
+                 :url_base => 'http://semantictweet.com/'
                )
-
-  DataMapper.setup(:default, "sqlite3:///#{File.expand_path(File.dirname(__FILE__))}/#{Sinatra::Base.environment}.db")
 
   # load models
   $LOAD_PATH.unshift("#{File.dirname(__FILE__)}/lib")
