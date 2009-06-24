@@ -1,0 +1,11 @@
+%h1 Welcome to SemanticTweets
+
+%p<
+  To see your twitter friends and followers as a
+  = succeed ',' do
+    %a{:href => "http://www.foaf-project.org/"} FOAF document
+  enter your twitter screen name:
+%form{:action => '/screen_name', :method => 'get'}
+  %label http://twitter.com/
+  %input{:type => "text", :id => "screen_name", :name => "screen_name" }
+  %input{:type => "submit", :value => "Go" }
