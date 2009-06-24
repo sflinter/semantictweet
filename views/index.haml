@@ -5,7 +5,17 @@
   = succeed ',' do
     %a{:href => "http://www.foaf-project.org/"} FOAF document
   enter your twitter screen name:
+
 %form{:action => '/screen_name', :method => 'get'}
   %label http://twitter.com/
   %input{:type => "text", :id => "screen_name", :name => "screen_name" }
   %input{:type => "submit", :value => "Go" }
+
+%p Status: if there was a letter before alpha, it would be that.
+
+%p
+  All feedback gratefully received. Check out
+  %a{:href => "http://blog.semantictweet.com"}the blog
+  for announcements and contact details, or follow
+  = succeed '.' do
+    %a{:href => "http://twitter.com/semantictweet"} @semantictweet
