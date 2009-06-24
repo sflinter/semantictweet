@@ -1,0 +1,10 @@
+/Library/Ruby/Gems/1.8/gems/rack-1.0.0/lib/rack/handler/mongrel.rb:34:in `join': Interrupt
+	from /Library/Ruby/Gems/1.8/gems/rack-1.0.0/lib/rack/handler/mongrel.rb:34:in `run'
+	from /Library/Ruby/Gems/1.8/gems/rack-1.0.0/bin/rackup:176
+	from /usr/bin/rackup:19:in `load'
+	from /usr/bin/rackup:19
+/Library/Ruby/Gems/1.8/gems/rack-1.0.0/lib/rack/handler/mongrel.rb:34:in `join': Interrupt
+	from /Library/Ruby/Gems/1.8/gems/rack-1.0.0/lib/rack/handler/mongrel.rb:34:in `run'
+	from /Library/Ruby/Gems/1.8/gems/rack-1.0.0/bin/rackup:176
+	from /usr/bin/rackup:19:in `load'
+	from /usr/bin/rackup:19
