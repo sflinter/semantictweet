@@ -22,7 +22,7 @@ helpers do
     xml.foaf :Person, rdf_id do
       xml.foaf :name, person['name']
       xml.foaf :nick, person['screen_name']
-      xml.rdf :seeAlso, "rdf:resource" => "#{BASE_URL}/#{person['screen_name']}"
+      xml.foaf :homepage, "rdf:resource" => "#{BASE_URL}/#{person['screen_name']}"
       xml.foaf :homepage, "rdf:resource" => person['url']
       xml.foaf :img, "rdf:resource" => person['profile_image_url']
       
