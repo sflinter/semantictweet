@@ -3,6 +3,7 @@ require 'httparty'
 class Twitter
   include HTTParty
   base_uri 'twitter.com'
+#   basic_auth 'semantictweet', 'android!'
   
   def initialize(screen_name='')
     @screen_name = screen_name
@@ -18,14 +19,20 @@ class Twitter
   end
   
   def friends
+#     response = self.class.get("/statuses/friends/#{@screen_name}.json")
+#     puts "#{@screen_name} has #{response.body.size} friends"
+#     response.body
     self.class.get("/statuses/friends/#{@screen_name}.json")
   end
   
   def followers
+#     response = self.class.get("/statuses/followers/#{@screen_name}.json")
+#     puts "#{@screen_name} has #{response.body.size} followers"
+#     response.body
     self.class.get("/statuses/followers/#{@screen_name}.json")
   end
   
   def knows
-    (self.friends << self.followers).flatten.uniq
+    self.friends | self.followers
   end
 end

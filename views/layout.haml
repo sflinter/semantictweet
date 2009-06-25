@@ -1,6 +1,61 @@
 !!! 1.1
 %html{html_attrs}
   %head
-    %title SemanticTweets - twitter meets the semantic web
+    %meta{ :content => "text/html; charset=utf-8", "http-equiv" => "content-type" }
+    %meta{ :name => "keywords", :content => "twitter foaf semantic web rdf" }
+    %meta{ :name => "description", :content => "FOAF feed for twitter friends and followers" }
+    %title SemanticTweet - twitter meets the semantic web
+    %link{ :href => "stylesheets/default.css", :rel => "stylesheet", :type => "text/css" }
   %body
-    =yield
+    #logo-wrap
+      #logo
+        %h1
+          %a{ :href => "/" }
+            SemanticTweet
+        %h2
+          Twitter meets the semantic web
+    /
+      start header
+    #header
+      #menu
+        %ul
+          %li.current_page_item
+            %a{ :href => "/" }
+              Homepage
+          %li
+            %a{ :href => "http://blog.semantictweet.com/" }
+              Blog
+          %li
+            %a{ :href => "/about" }
+              About
+          %li.last
+            %a{ :href => "/contact" }
+              Contact
+    /
+      end header
+    /
+      start page
+    #wrapper
+      #wrapper-btm
+        #page
+          #content
+            .post
+              =yield
+          %div{ :style => "clear: both;" }
+            \&nbsp;
+        /
+          end page
+    /
+      start footer
+    #footer
+      #footer-wrap
+        %p#legal
+          (c) 2009
+          %a{ :href => "http://flinter.com/" }
+            Steve Flinter
+          \. Design by
+          %a{ :href => "http://www.freecsstemplates.org/" }
+            Free CSS Templates
+          \.
+    /
+      end footer
