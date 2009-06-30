@@ -20,17 +20,13 @@
       #menu
         %ul
           %li.current_page_item
-            %a{ :href => "/" }
-              Homepage
+            %a{ :href => "/" } Homepage
           %li
-            %a{ :href => "http://blog.semantictweet.com/" }
-              Blog
+            %a{ :href => "http://blog.semantictweet.com/" } Blog
           %li
-            %a{ :href => "/about" }
-              About
+            %a{ :href => "/about" } About
           %li.last
-            %a{ :href => "/contact" }
-              Contact
+            %a{ :href => "/contact" } Contact
     /
       end header
     /
@@ -43,19 +39,26 @@
               =yield
           %div{ :style => "clear: both;" }
             \&nbsp;
-        /
-          end page
+    /
+      end page
     /
       start footer
     #footer
       #footer-wrap
         %p#legal
-          (c) 2009
-          %a{ :href => "http://flinter.com/" }
-            Steve Flinter
-          \. Design by
-          %a{ :href => "http://www.freecsstemplates.org/" }
-            Free CSS Templates
-          \.
+          :textile
+            (c) 2009 "Steve Flinter":http://flinter.com/. Design by Free "CSS Templates":http://www.freecsstemplates.org/.
+
     /
       end footer
+
+    /
+      Google analytics
+    %script{ :type => "text/javascript" }
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    %script{ :type => "text/javascript" }
+      try {
+      var pageTracker = _gat._getTracker("UA-409597-10");
+      pageTracker._trackPageview();
+      } catch(err) {}
