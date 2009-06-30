@@ -4,10 +4,22 @@ require 'sinatra'
 require 'builder'
 require 'haml'
 require 'twitter'
+require 'uri'
 
 BASE_URL = 'http://semantictweet.com'
 
 mime :rdf, 'application/rdf+xml'
+
+helpers do
+  def valid_uri?(uri = "")
+    begin
+      URI.parse(uri)
+      true
+    end
+  rescue URI::InvalidURIError
+    false
+  end
+end
 
 configure do
   set :views, "#{File.dirname(__FILE__)}/views"
@@ -48,7 +60,7 @@ get '/:screen_name' do
 end
 
 error do
-  e = require.env['sinatra.error']
+  e = request.env['sinatra.error']
   Kernel.puts e.backtrace.join("\n")
   'Appliation error'
 end

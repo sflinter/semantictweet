@@ -23,13 +23,13 @@ helpers do
       xml.foaf :Person, rdf_id do
         xml.foaf :name, person['name']
         xml.foaf :nick, person['screen_name']
-        xml.rdf :seeAlso, "rdf:resource" => "#{BASE_URL}/#{person['screen_name']}"
-        xml.foaf :homepage, "rdf:resource" => person['url']
+        xml.rdfs :seeAlso, "rdf:resource" => "#{BASE_URL}/#{person['screen_name']}"
+        xml.foaf :homepage, "rdf:resource" => person['url'] if valid_uri?(person['url'])
         xml.foaf :img, "rdf:resource" => person['profile_image_url']
 
-        if !knows.empty?
+        knows.each do |friend|
           xml.foaf :knows do
-            knows.each { |friend| self.person(xml, friend) }
+            self.person(xml, friend)
           end
         end
       end
