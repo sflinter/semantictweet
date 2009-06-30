@@ -32,7 +32,16 @@ class Twitter
     self.class.get("/statuses/followers/#{@screen_name}.json")
   end
   
-  def knows
+  def all
     self.friends | self.followers
+  end
+  
+  def who(who)
+    case who
+      when 'friends': self.friends
+      when 'followers': self.followers
+      when 'all': self.all
+      else []
+    end
   end
 end

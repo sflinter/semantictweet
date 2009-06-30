@@ -8,8 +8,8 @@ helpers do
     }
   end
 
-  def personal_profile_document(xml)
-    xml.foaf :PersonalProfileDocument, "rdf:about" => "" do
+  def personal_profile_document(xml, person)
+    xml.foaf :PersonalProfileDocument, "rdf:about" => "#{BASE_URL}/#{person['screen_name']}#me" do
       xml.foaf :maker, "rdf:resource" => "#me"
       xml.foaf :primaryTopic, "rdf:resource" => "#me"
       xml.admin :generatorAgent, "rdf:resource" => "http://semantictweet.com"
@@ -38,7 +38,7 @@ helpers do
 end
 
 xml.rdf :RDF, namespaces do
-  personal_profile_document(xml)
-  person(xml, @twitter.show, "me", @twitter.friends)
+  personal_profile_document(xml, @twitter.show)
+  person(xml, @twitter.show, "me", @foafs)
 end
 

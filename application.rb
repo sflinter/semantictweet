@@ -49,9 +49,10 @@ get '/screen_name' do
   redirect "/#{params[:screen_name]}"
 end
 
-get '/:screen_name' do
+get '/:screen_name/:who' do
   @twitter = Twitter.new(params[:screen_name])
   if @twitter.exists?
+    @foafs = @twitter.who(params[:who])
     content_type :rdf
     builder :foaf
   else
@@ -59,10 +60,14 @@ get '/:screen_name' do
   end
 end
 
+get '/:screen_name' do
+  redirect "#{params[:screen_name]}/friends"
+end
+
 error do
   e = request.env['sinatra.error']
   Kernel.puts e.backtrace.join("\n")
-  'Appliation error'
+  'Oops, we messed up!'
 end
 
 not_found do
