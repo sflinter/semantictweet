@@ -39,6 +39,6 @@ end
 
 xml.rdf :RDF, namespaces do
   personal_profile_document(xml)
-  person(xml, @twitter.show, "me", @twitter.followers)
+  person(xml, @twitter.show, "me", @twitter.friends)
 end
 
