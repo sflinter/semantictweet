@@ -3,7 +3,7 @@ require 'httparty'
 class Twitter
   include HTTParty
   base_uri 'twitter.com'
-#   basic_auth 'semantictweet', 'android!'
+  basic_auth 'semantictweet', 'secret'
   
   def initialize(screen_name='')
     @screen_name = screen_name

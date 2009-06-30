@@ -27,7 +27,7 @@ helpers do
         xml.foaf :homepage, "rdf:resource" => person['url']
         xml.foaf :img, "rdf:resource" => person['profile_image_url']
 
-        if knows
+        if !knows.empty?
           xml.foaf :knows do
             knows.each { |friend| self.person(xml, friend) }
           end
