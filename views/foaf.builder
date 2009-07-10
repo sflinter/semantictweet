@@ -11,15 +11,15 @@ helpers do
   def personal_profile_document(xml, person)
     me = rdf_id(person['screen_name'])
     xml.foaf :PersonalProfileDocument, "rdf:about" => "" do
-      xml.foaf :maker, "rdf:resource" => "#{BASE_URL}/semantictweet"
+      xml.foaf :maker, "rdf:resource" => "#{APP_CONFIG[:semantictweet][:base_uri]}/semantictweet"
       xml.foaf :primaryTopic, "rdf:resource" => me
-      xml.admin :generatorAgent, "rdf:resource" => "http://semantictweet.com/"
-      xml.admin :errorReportsTo, "rdf:resource" => "mailto:stephen@flinter.com"
+      xml.admin :generatorAgent, "rdf:resource" => APP_CONFIG[:semantictweet][:generator_agent]
+      xml.admin :errorReportsTo, "rdf:resource" => APP_CONFIG[:semantictweet][:error_reports_to]
     end
   end
 
   def rdf_id(id = "")
-    "#{BASE_URL}/#{id}#me"
+    "#{APP_CONFIG[:semantictweet][:base_uri]}/#{id}#me"
   end
 
   def knows(xml, foaf)
@@ -31,7 +31,7 @@ helpers do
       xml.foaf :Person, "rdf:about" => rdf_id(person['screen_name']) do
         xml.foaf :name, person['name']
         xml.foaf :nick, person['screen_name']
-        xml.rdfs :seeAlso, "rdf:resource" => "#{BASE_URL}/#{person['screen_name']}"
+        xml.rdfs :seeAlso, "rdf:resource" => "#{APP_CONFIG[:semantictweet][:base_uri]}/#{person['screen_name']}"
         xml.foaf :homepage, "rdf:resource" => person['url'] if valid_uri?(person['url'])
         xml.foaf :img, "rdf:resource" => person['profile_image_url']
         foafs.each { |foaf| knows(xml, foaf) } if !foafs.empty?

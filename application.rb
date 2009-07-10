@@ -6,8 +6,6 @@ require 'haml'
 require 'twitter'
 require 'uri'
 
-BASE_URL = 'http://semantictweet.com'
-
 mime :rdf, 'application/rdf+xml'
 
 helpers do

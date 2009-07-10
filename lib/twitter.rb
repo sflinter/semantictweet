@@ -2,8 +2,8 @@ require 'httparty'
 
 class Twitter
   include HTTParty
-  base_uri 'twitter.com'
-  basic_auth 'semantictweet', 'secret'
+  base_uri APP_CONFIG[:twitter][:base_uri]
+  basic_auth APP_CONFIG[:twitter][:basic_auth_username], APP_CONFIG[:twitter][:basic_auth_password]
   
   def initialize(screen_name='')
     @screen_name = screen_name

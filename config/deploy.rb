@@ -24,7 +24,14 @@ role :db,  host, :primary => true
 namespace :deploy do
   desc "Restart the web server"
   task :restart, :roles => :app do
-    run "cd /home/#{user}/public_html ; rm #{domain} ; ln -s /home/#{user}/#{application}/current/public ./#{domain}"
-    run "cd /home/#{user}/#{application}/current/tmp ; touch restart.txt"
+    run "cd /home/#{user}/public_html ; rm #{domain} ; ln -s #{current_path}/public ./#{domain}"
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+  
+  desc "Symlink shared configs and folders on each release."
+  task :symlink_shared do
+    run "ln -nsf #{shared_path}/config/config.yml #{release_path}/config/config.yml"
   end
 end
+
+after 'deploy:udpate_code', 'deploy:symlink_shared'
