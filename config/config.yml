@@ -1,0 +1,16 @@
+development: &non_production_settings
+  :semantictweet:
+    :base_uri: http://semantictweet.com
+    :generator_agent: http://semantictweet.com/
+    :error_reports_to: mailto:stephen@flinter.com
+
+  :twitter:
+    :base_uri: twitter.com
+    :basic_auth_username: semantictweet
+    :basic_auth_password: secret
+
+test:
+  <<: *non_production_settings
+
+production:
+  <<: *non_production_settings
