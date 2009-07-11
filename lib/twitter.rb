@@ -1,4 +1,5 @@
 require 'httparty'
+require 'uri'
 
 class Twitter
   include HTTParty
@@ -6,7 +7,7 @@ class Twitter
   basic_auth APP_CONFIG[:twitter][:basic_auth_username], APP_CONFIG[:twitter][:basic_auth_password]
   
   def initialize(screen_name='')
-    @screen_name = screen_name
+    @screen_name = URI.escape(screen_name)
   end
   
   def exists?
