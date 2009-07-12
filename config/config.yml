@@ -9,6 +9,10 @@ development: &non_production_settings
     :basic_auth_username: semantictweet
     :basic_auth_password: secret
 
+  :geonames:
+    :base_uri: ws.geonames.org
+    :sws_base_uri: sws.geonames.org
+
 test:
   <<: *non_production_settings
 
