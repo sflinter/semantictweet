@@ -1,6 +1,7 @@
 require 'httparty'
 require 'uri'
 require 'pp'
+require 'geonames'
 
 class Tweeter
   include Comparable
@@ -8,7 +9,7 @@ class Tweeter
   base_uri APP_CONFIG[:twitter][:base_uri]
   basic_auth APP_CONFIG[:twitter][:basic_auth_username], APP_CONFIG[:twitter][:basic_auth_password]
   
-  attr_reader :foafs
+  attr_reader :foafs, :geoname
   
   def initialize(tweeter, who = 'friends')
     @foafs = []
@@ -20,6 +21,7 @@ class Tweeter
       if self.exists?
         foafs = self.who(who)
         @foafs = foafs.map { |foaf| Tweeter.new(foaf) }
+        @geoname = GeoNames.new(@tweeter['location']) if @tweeter['location']
       end
     when Hash
       @tweeter = tweeter

@@ -5,7 +5,8 @@ helpers do
       "xmlns:rdfs" => "http://www.w3.org/2000/01/rdf-schema#",
       "xmlns:foaf" => "http://xmlns.com/foaf/0.1/",
       "xmlns:admin" => "http://webns.net/mvcb/",
-      "xmlns:geo" => "http://www.w3.org/2003/01/geo/wgs84_pos#"
+      "xmlns:wgs84_pos" => "http://www.w3.org/2003/01/geo/wgs84_pos#",
+      "xmlns:geo" => "http://www.geonames.org/ontology#"
     }
   end
 
@@ -27,6 +28,19 @@ helpers do
     xml.foaf :knows, "rdf:resource" => rdf_id(tweeter.screen_name)
   end
   
+  def based_near(xml, geoname)
+    xml.foaf :based_near do
+      xml.wgs84_pos :Point do
+        xml.foaf :name, geoname.name
+        xml.wgs84_pos :lat, geoname.lat
+        xml.wgs84_pos :long, geoname.lng
+      end
+    end
+    xml.foaf :based_near do
+      geoname.geonameUri
+    end
+  end
+  
   def person(xml, tweeter)
     if tweeter && tweeter.name
       xml.foaf :Person, "rdf:about" => rdf_id(tweeter.screen_name) do
@@ -35,6 +49,7 @@ helpers do
         xml.rdfs :seeAlso, "rdf:resource" => "#{APP_CONFIG[:semantictweet][:base_uri]}/#{tweeter.screen_name}"
         xml.foaf :homepage, "rdf:resource" => tweeter.url if valid_uri?(tweeter.url)
         xml.foaf :img, "rdf:resource" => tweeter.profile_image_url
+        based_near(xml, tweeter.geoname) if tweeter.geoname
         tweeter.foafs.each { |foaf| knows(xml, foaf) } #if !person.foafs.empty?
       end
     end
