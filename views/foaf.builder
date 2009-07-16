@@ -32,11 +32,11 @@ helpers do
     xml.foaf :based_near do
       xml.wgs84_pos :Point do
         xml.foaf :name, geoname.name
-        xml.wgs84_pos :lat, geoname.lat
-        xml.wgs84_pos :long, geoname.lng
+        xml.wgs84_pos :lat, geoname.lat if geoname.lat != 0
+        xml.wgs84_pos :long, geoname.lng if geoname.lng != 0
       end
     end
-    xml.foaf :based_near, "rdf:resource" => geoname.geonameUri
+    xml.foaf :based_near, "rdf:resource" => geoname.geonameUri if geoname.geonameId != 0
   end
   
   def person(xml, tweeter)
