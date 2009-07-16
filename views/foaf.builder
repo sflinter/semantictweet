@@ -9,8 +9,8 @@ helpers do
     }
   end
 
-  def personal_profile_document(xml, person)
-    me = rdf_id(person['screen_name'])
+  def personal_profile_document(xml, tweeter)
+    me = rdf_id(tweeter.screen_name)
     xml.foaf :PersonalProfileDocument, "rdf:about" => "" do
       xml.foaf :maker, "rdf:resource" => "#{APP_CONFIG[:semantictweet][:base_uri]}/semantictweet"
       xml.foaf :primaryTopic, "rdf:resource" => me
@@ -23,29 +23,27 @@ helpers do
     "#{APP_CONFIG[:semantictweet][:base_uri]}/#{id}#me"
   end
 
-  def knows(xml, foaf)
-    xml.foaf :knows, "rdf:resource" => rdf_id(foaf['screen_name'])
+  def knows(xml, tweeter)
+    xml.foaf :knows, "rdf:resource" => rdf_id(tweeter.screen_name)
   end
   
-  def person(xml, person, foafs = [])
-    if person && person['name']
-      xml.foaf :Person, "rdf:about" => rdf_id(person['screen_name']) do
-        xml.foaf :name, person['name']
-        xml.foaf :nick, person['screen_name']
-        xml.rdfs :seeAlso, "rdf:resource" => "#{APP_CONFIG[:semantictweet][:base_uri]}/#{person['screen_name']}"
-        xml.foaf :homepage, "rdf:resource" => person['url'] if valid_uri?(person['url'])
-        xml.foaf :img, "rdf:resource" => person['profile_image_url']
-        foafs.each { |foaf| knows(xml, foaf) } if !foafs.empty?
+  def person(xml, tweeter)
+    if tweeter && tweeter.name
+      xml.foaf :Person, "rdf:about" => rdf_id(tweeter.screen_name) do
+        xml.foaf :name, tweeter.name
+        xml.foaf :nick, tweeter.screen_name
+        xml.rdfs :seeAlso, "rdf:resource" => "#{APP_CONFIG[:semantictweet][:base_uri]}/#{tweeter.screen_name}"
+        xml.foaf :homepage, "rdf:resource" => tweeter.url if valid_uri?(tweeter.url)
+        xml.foaf :img, "rdf:resource" => tweeter.profile_image_url
+        tweeter.foafs.each { |foaf| knows(xml, foaf) } #if !person.foafs.empty?
       end
     end
   end
 end
 
 xml.rdf :RDF, namespaces do
-  personal_profile_document(xml, @twitter.show)
-  @foafs.each do |foaf|
-    person(xml, foaf)
-  end
-  person(xml, @twitter.show, @foafs)
+  personal_profile_document(xml, @tweeter)
+  @tweeter.foafs.each { |tweeter| person(xml, tweeter) }
+  person(xml, @tweeter)
 end
 

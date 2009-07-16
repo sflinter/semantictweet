@@ -3,7 +3,8 @@ require 'environment'
 require 'sinatra'
 require 'builder'
 require 'haml'
-require 'twitter'
+require 'tweeter'
+require 'geonames'
 require 'uri'
 
 mime :rdf, 'application/rdf+xml'
@@ -13,9 +14,9 @@ helpers do
     begin
       URI.parse(uri)
       true
+    rescue URI::InvalidURIError
+      false
     end
-  rescue URI::InvalidURIError
-    false
   end
 end
 
@@ -48,9 +49,8 @@ get '/screen_name' do
 end
 
 get '/:screen_name/:who' do
-  @twitter = Twitter.new(params[:screen_name])
-  if @twitter.exists?
-    @foafs = @twitter.who(params[:who])
+  @tweeter = Tweeter.new(params[:screen_name], params[:who])
+  if @tweeter.exists?
     content_type :rdf
     builder :foaf
   else
@@ -65,6 +65,7 @@ end
 error do
   e = request.env['sinatra.error']
   Kernel.puts e.backtrace.join("\n")
+  content_type :html
   'Oops, we messed up!'
 end
 
