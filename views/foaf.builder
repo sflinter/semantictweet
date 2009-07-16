@@ -36,9 +36,7 @@ helpers do
         xml.wgs84_pos :long, geoname.lng
       end
     end
-    xml.foaf :based_near do
-      geoname.geonameUri
-    end
+    xml.foaf :based_near, "rdf:resource" => geoname.geonameUri
   end
   
   def person(xml, tweeter)
