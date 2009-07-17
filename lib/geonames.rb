@@ -6,7 +6,7 @@ class GeoNames
   include HTTParty
   base_uri APP_CONFIG[:geonames][:base_uri]
   
-  attr_reader :lat, :lng, :name, :geonameId, :geonameUri
+  attr_reader :lat, :lng, :name, :geonameId
   
   # We will cater for a number of types of placenames:
   # 1. Names of the form 'geonames:123456'
@@ -19,7 +19,6 @@ class GeoNames
     @lng = 0
     @name = location
     @geonameId = 0
-    @geonameUri = ""
     
     case location
     when /geonames:(\d+)/ # e.g. geonames:123456
