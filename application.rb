@@ -36,14 +36,6 @@ get '/contact' do
   haml :contact
 end
 
-get '/friends' do
-  Twitter.new('semantictweet').friends
-end
-
-get '/followers' do
-  Twitter.new('semantictweet').followers
-end
-
 get '/screen_name' do
   redirect "/#{params[:screen_name]}"
 end
@@ -59,7 +51,7 @@ get '/:screen_name/:who' do
 end
 
 get '/:screen_name' do
-  redirect "#{params[:screen_name]}/friends"
+  redirect "/#{params[:screen_name]}/friends"
 end
 
 error do

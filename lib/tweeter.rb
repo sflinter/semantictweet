@@ -21,7 +21,7 @@ class Tweeter
       if self.exists?
         foafs = self.who(who)
         @foafs = foafs.map { |foaf| Tweeter.new(foaf) }
-        @geoname = GeoNames.new(@tweeter['location']) if @tweeter['location']
+        @geoname = GeoNames.new(@tweeter['location']) unless @tweeter['location'].blank?
       end
     when Hash
       @tweeter = tweeter
