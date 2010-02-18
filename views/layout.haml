@@ -45,9 +45,17 @@
       start footer
     #footer
       #footer-wrap
+        %script{:type => "text/javascript", :src => "http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_GB"}
+        %script{:type => "text/javascript"}
+          FB.init("301bdfa377413974fe0afe7c5896e2c9");
+        %fb:fan{:profile_id => "98647674890", :stream => "0", :connections => "0", :logobar => "0", :width => "300"}
+
+        %a{:href => "http://twitter.com/semantictweet"}
+          %img{:src => "http://www.twitterbuttons.com/images/ex/nt12.png"}
+
         %p#legal
           :textile
-            (c) 2009 "Steve Flinter":http://flinter.com/. Design by Free "CSS Templates":http://www.freecsstemplates.org/.
+            (c) 2009-2010 "Steve Flinter":http://flinter.com/. Design by Free "CSS Templates":http://www.freecsstemplates.org/.
 
     /
       end footer
