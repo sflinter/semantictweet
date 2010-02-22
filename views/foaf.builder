@@ -39,16 +39,16 @@ helpers do
     xml.foaf :based_near, "rdf:resource" => geoname.geonameUri if geoname.geonameId != 0
   end
   
-  def person(xml, tweeter)
+  def agent(xml, tweeter)
     if tweeter && tweeter.name
-      xml.foaf :Person, "rdf:about" => rdf_id(tweeter.screen_name) do
+      xml.foaf :Agent, "rdf:about" => rdf_id(tweeter.screen_name) do
         xml.foaf :name, tweeter.name
         xml.foaf :nick, tweeter.screen_name
         xml.rdfs :seeAlso, "rdf:resource" => "#{APP_CONFIG[:semantictweet][:base_uri]}/#{tweeter.screen_name}"
         xml.foaf :homepage, "rdf:resource" => tweeter.url if (!tweeter.url.blank? && valid_uri?(tweeter.url))
         xml.foaf :img, "rdf:resource" => tweeter.profile_image_url unless tweeter.profile_image_url.blank?
         based_near(xml, tweeter.geoname) if tweeter.geoname
-        tweeter.foafs.each { |foaf| knows(xml, foaf) } #if !person.foafs.empty?
+        tweeter.foafs.each { |foaf| knows(xml, foaf) } #if !agent.foafs.empty?
       end
     end
   end
@@ -56,7 +56,7 @@ end
 
 xml.rdf :RDF, namespaces do
   personal_profile_document(xml, @tweeter)
-  @tweeter.foafs.each { |tweeter| person(xml, tweeter) }
-  person(xml, @tweeter)
+  @tweeter.foafs.each { |tweeter| agent(xml, tweeter) }
+  agent(xml, @tweeter)
 end
 
