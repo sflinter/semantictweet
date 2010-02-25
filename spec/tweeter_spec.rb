@@ -18,11 +18,6 @@ describe "Tweeter integration" do
     tweeter.friends_count.should == tweeter.foafs.size
   end
   
-  it 'should have the right number for all' do
-    tweeter = Tweeter.new('semantictweet', 'all')
-    tweeter.foafs.size.should == tweeter.friends_count + tweeter.followers_count
-  end
-  
   it 'should not have a geoname without a location' do
     tweeter = Tweeter.new('hughglaser', 'friends')
     tweeter.location.should == ''
