@@ -7,7 +7,7 @@ require 'tweeter'
 require 'geonames'
 require 'uri'
 
-mime :rdf, 'application/rdf+xml'
+mime_type :rdf, 'application/rdf+xml'
 
 helpers do
   def valid_uri?(uri = "")
