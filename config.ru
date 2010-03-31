@@ -1,3 +1,5 @@
+Dir["vendor/gems/*/lib"].each { |path| $:.unshift path } 
+
 require 'application'
 
 set :run, false
