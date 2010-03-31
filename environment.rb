@@ -4,6 +4,7 @@ ENV['RACK_ENV'] ||= 'production'
 require 'rubygems'
 require 'haml'
 require 'ostruct'
+require 'yaml'
 
 require 'sinatra' unless defined?(Sinatra)
 
