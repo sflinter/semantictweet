@@ -12,7 +12,15 @@ describe 'main application' do
     last_response.should be_ok
   end
 
-  specify 'should have more specs' do
-    pending
+  specify 'should show the semantictweet page' do
+    get '/semantictweet'
+    last_response.body.should include 'foaf:PersonalProfileDocument'
+    last_response.status.should == 302
+  end
+
+  specify 'should show the semantictweet friends page' do
+    get '/semantictweet/friends'
+    last_response.should be_ok
+    last_response.body.should include 'foaf:PersonalProfileDocument'
   end
 end
