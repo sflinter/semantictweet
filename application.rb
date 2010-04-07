@@ -1,4 +1,3 @@
-require 'rubygems'
 require 'environment'
 require 'sinatra'
 require 'builder'

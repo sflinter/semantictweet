@@ -5,7 +5,8 @@ development: &non_production_settings
     :error_reports_to: mailto:stephen@flinter.com
 
   :twitter:
-    :base_uri: twitter.com
+    :base_uri: api.twitter.com
+    :api_version: 1
     :basic_auth_username: semantictweet
     :basic_auth_password: secret
 

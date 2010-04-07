@@ -37,21 +37,21 @@ class Tweeter
   end
   
   def show
-    puts "Calling: #{APP_CONFIG[:twitter][:base_uri]}/users/show.json?screen_name=#{@given_screen_name}"
-    resp = self.class.get("/users/show.json?screen_name=#{@given_screen_name}")
+    puts "Calling: #{APP_CONFIG[:twitter][:base_uri]}/#{APP_CONFIG[:twitter][:api_version]}/users/show.json?screen_name=#{@given_screen_name}"
+    resp = self.class.get("/#{APP_CONFIG[:twitter][:api_version]}/users/show.json?screen_name=#{@given_screen_name}")
     @exists = resp.code.between?(200,299)
     resp
   end
   
   def friends
-    puts "Calling: #{APP_CONFIG[:twitter][:base_uri]}/statuses/friends/#{@given_screen_name}.json"
-    resp = self.class.get("/statuses/friends/#{@given_screen_name}.json")
+    puts "Calling: #{APP_CONFIG[:twitter][:base_uri]}/#{APP_CONFIG[:twitter][:api_version]}/statuses/friends/#{@given_screen_name}.json"
+    resp = self.class.get("/#{APP_CONFIG[:twitter][:api_version]}/statuses/friends/#{@given_screen_name}.json")
     resp
   end
   
   def followers
-    puts "Calling: #{APP_CONFIG[:twitter][:base_uri]}/statuses/followers/#{@given_screen_name}.json"
-    self.class.get("/statuses/followers/#{@given_screen_name}.json")
+    puts "Calling: #{APP_CONFIG[:twitter][:base_uri]}/#{APP_CONFIG[:twitter][:api_version]}/statuses/followers/#{@given_screen_name}.json"
+    self.class.get("/#{APP_CONFIG[:twitter][:api_version]}/statuses/followers/#{@given_screen_name}.json")
   end
   
   def all
