@@ -16,6 +16,8 @@ development: &non_production_settings
 
 test:
   <<: *non_production_settings
+  :semantictweet:
+    :base_uri: http://semantictweet.local
 
 production:
   <<: *non_production_settings

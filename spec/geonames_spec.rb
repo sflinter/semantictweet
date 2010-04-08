@@ -1,3 +1,5 @@
+require "#{File.dirname(__FILE__)}/spec_helper"
+
 describe 'GeoNames integration' do
   it 'should parse Paris' do
     location = "Paris"
