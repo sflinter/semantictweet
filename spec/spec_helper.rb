@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'sinatra'
 require 'spec'
 require 'spec/interop/test'
@@ -12,6 +13,5 @@ set :logging, true
 require 'application'
 
 Spec::Runner.configure do |config|
-  # reset database before each example is run
-#   config.before(:each) { DataMapper.auto_migrate! }
+
 end
