@@ -37,12 +37,10 @@ end
 
 # Note the formulation of a specific regexp is required here. The
 # preferred option of '/tag/:tags' doesn't match all URIs properly
-get %r{\A/tag/(.*)} do |tags|
-  resp = ""
-  tags.split(' ').each do |tag|
-    resp << "<p>/tag/#{tag}</p>"
-  end
-  resp
+get %r{\A/tags/(.*)} do |tags|
+  @tags = tags.split(' ')
+  content_type :rdf
+  builder :tags
 end
 
 get '/screen_name' do

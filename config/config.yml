@@ -6,6 +6,7 @@ development: &non_production_settings
 
   :twitter:
     :base_uri: api.twitter.com
+    :search_uri: http://search.twitter.com
     :api_version: 1
     :basic_auth_username: semantictweet
     :basic_auth_password: secret

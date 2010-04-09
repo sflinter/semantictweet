@@ -30,13 +30,10 @@ describe 'main application' do
   end
 
   specify 'should show the tag page' do
-    get '/tag/%23dev8d+%23bc'
-    puts "#{APP_CONFIG[:semantictweet][:base_uri]}"
-    puts last_response.body
-    last_response.status.should == 200
+    tags = "%23dev8d+%23bc"
+    get "/tags/#{tags}"
     last_response.should be_ok
-    puts last_response.body
-    last_response.body.should include '<skos:Concept rdf:about="http://semantictweet.com/tag/%23dev8d+%23bc">'
-    last_response.body.should include '<foaf:Document rdf:about="http://search.twitter.com/search?q=%23dev8d+#23bc">'
+    last_response.body.should include "<skos:Concept rdf:about=\"#{APP_CONFIG[:semantictweet][:base_uri]}/tags/#{tags}\">"
+    last_response.body.should include "<foaf:Document rdf:about=\"#{APP_CONFIG[:twitter][:search_uri]}/#{APP_CONFIG[:twitter][:api_version]}/search?q=#{tags}\">"
   end
 end
