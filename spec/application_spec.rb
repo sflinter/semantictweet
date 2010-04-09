@@ -34,6 +34,6 @@ describe 'main application' do
     get "/tags/#{tags}"
     last_response.should be_ok
     last_response.body.should include "<skos:Concept rdf:about=\"#{APP_CONFIG[:semantictweet][:base_uri]}/tags/#{tags}\">"
-    last_response.body.should include "<foaf:Document rdf:about=\"#{APP_CONFIG[:twitter][:search_uri]}/#{APP_CONFIG[:twitter][:api_version]}/search?q=#{tags}\">"
+    last_response.body.should include "<foaf:Document rdf:about=\"#{APP_CONFIG[:twitter][:search_uri]}/search?q=#{tags}\">"
   end
 end
