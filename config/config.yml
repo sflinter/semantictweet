@@ -8,8 +8,11 @@ development: &non_production_settings
     :base_uri: api.twitter.com
     :search_uri: http://search.twitter.com
     :api_version: 1
-    :basic_auth_username: semantictweet
-    :basic_auth_password: secret
+    :consumer_key: REPLACE
+    :consumer_secret: REPLACE
+    :callback_url: REPLACE
+    :access_token: REPLACE
+    :access_token_secret: REPLACE
 
   :geonames:
     :base_uri: ws.geonames.org

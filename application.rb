@@ -1,6 +1,7 @@
 require 'environment'
 require 'sinatra'
 require 'builder'
+require 'twitter_oauth'
 require 'haml'
 require 'tweeter'
 require 'geonames'
@@ -23,6 +24,16 @@ configure do
   set :views, "#{File.dirname(__FILE__)}/views"
 end
 
+before do
+  next if request.path_info =~ /ping$/
+  @client = TwitterOAuth::Client.new(
+    :consumer_key => ENV['CONSUMER_KEY'] || APP_CONFIG[:twitter][:consumer_key],
+    :consumer_secret => ENV['CONSUMER_SECRET'] || APP_CONFIG[:twitter][:consumer_secret],
+    :token => APP_CONFIG[:twitter][:access_token],
+    :secret => APP_CONFIG[:twitter][:access_token_secret]
+  )
+end
+
 get '/' do
   haml :index
 end
@@ -33,6 +44,9 @@ end
 
 get '/contact' do
   haml :contact
+end
+
+get '/favicon.ico' do
 end
 
 # Note the formulation of a specific regexp is required here. The
@@ -48,7 +62,7 @@ get '/screen_name' do
 end
 
 get '/:screen_name/:who' do
-  @tweeter = Tweeter.new(params[:screen_name], params[:who])
+  @tweeter = Tweeter.new(@client, params[:screen_name], params[:who])
   if @tweeter.exists?
     content_type :rdf
     builder :foaf

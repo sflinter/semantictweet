@@ -9,6 +9,8 @@ require 'yaml'
 require 'sinatra' unless defined?(Sinatra)
 
 configure do
+  set :sessions, true
+
   SiteConfig = OpenStruct.new(
                  :title => 'SemanticTweet',
                  :author => 'Steve Flinter',
