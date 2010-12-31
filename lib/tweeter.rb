@@ -45,15 +45,15 @@ class Tweeter
   end
 
   def friends
-    puts "Calling @client.friends"
-    resp = @client.friends
+    puts "Calling @client.friends(#{@given_screen_name})"
+    resp = @client.friends(@given_screen_name)['users']
     # puts resp.to_yaml
     resp
   end
 
   def followers
-    puts "Calling @client.followers"
-    resp = @client.followers
+    puts "Calling @client.followers(#{@given_screen_name})"
+    resp = @client.followers(@given_screen_name)['users']
   end
 
   def all

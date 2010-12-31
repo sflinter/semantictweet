@@ -5,17 +5,10 @@ module TwitterOAuth
     # The page parameter is implemented for legacy reasons, but use of this is slow
     # as passing page is no longer supported by the Twitter API as the use of cursors
     # is now obligitory. It is recommended that you use all_friends instead
-    def friends(page=1)
-      return get("/statuses/friends.json?page=#{page}") if page == 1
+    def friends(screen_name, cursor="-1")
       users = []
-      cursor = "-1"
-      page.times do 
-        return [] if cursor == 0 
-        json = get("/statuses/friends.json?cursor=#{cursor}")
-        cursor = json["next_cursor"]
-        users = json["users"]
-      end
-      users
+      return [] if cursor == 0 
+      get("/statuses/friends/#{screen_name}.json?cursor=#{cursor}")
     end 
 
     # Returns all pages of friends
@@ -31,17 +24,10 @@ module TwitterOAuth
     end
     
     # Returns the 100 last followers
-    def followers(page=1)
-      return get("/statuses/followers.json?page=#{page}") if page == 1
+    def followers(screen_name,cursor="-1")
       users = []
-      cursor = "-1"
-      page.times do 
-        return [] if cursor == 0 
-        json = get("/statuses/followers.json?cursor=#{cursor}")
-        cursor = json["next_cursor"]
-        users = json["users"]
-      end
-      users
+      return [] if cursor == 0 
+      get("/statuses/followers/#{screen_name}.json?cursor=#{cursor}")
     end 
 
     # Returns all pages of followers

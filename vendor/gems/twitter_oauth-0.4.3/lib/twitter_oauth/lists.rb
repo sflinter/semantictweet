@@ -32,10 +32,10 @@ module TwitterOAuth
     end
     
     # Show tweet timeline for members of the specified list.
-    def list_statuses(user, list)
-      get("/#{user}/lists/#{list}/statuses.json")
+    def list_statuses(user, list, page=1)
+      get("/#{user}/lists/#{list}/statuses.json?page=#{page}")
     end
-    
+        
     # List the lists the specified user has been added to.
     def list_memberships(user)
       get("/#{user}/lists/memberships.json")
