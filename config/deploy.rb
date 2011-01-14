@@ -1,7 +1,7 @@
 set :repo_user, "sflinter"
 set :user, 'flintero'
 set :domain, 'semantictweet.com'
-set :host, "aether.site5.com"
+set :host, "bennington.accountservergroup.com"
 set :application, "semantictweet"
 set :repository,  "git://github.com/#{repo_user}/#{application}.git"
 set :deploy_to, "/home/#{user}/#{application}"
