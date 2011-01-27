@@ -2,7 +2,11 @@ GEM
   remote: http://rubygems.org/
   specs:
     RedCloth (4.2.3)
+    builder (2.1.2)
+    crack (0.1.6)
     haml (2.2.24)
+    httparty (0.5.2)
+      crack (= 0.1.6)
     json (1.5.1)
     mime-types (1.16)
     oauth (0.4.4)
@@ -21,7 +25,9 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth (~> 4.2.3)
+  builder (~> 2.1.2)
   haml (~> 2.2.22)
+  httparty (~> 0.5.2)
   mime-types (~> 1.16)
   sinatra (~> 1.1.2)
   twitter_oauth (~> 0.4.3)
