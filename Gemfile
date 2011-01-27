@@ -3,7 +3,7 @@ source :rubygems
 gem "sinatra", "~> 1.1.2"
 
 # Gems to manage authentication with Twitter
-gem "twitter_oauth", "~> 0.4.3", :git => "https://github.com/bantamnet/twitter_oauth.git"
+gem "twitter_oauth", "~> 0.4.3", :git => "git://github.com/bantamnet/twitter_oauth.git"
 gem "httparty", "~> 0.5.2"
 
 # Gems to manage the front-end
