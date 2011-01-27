@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/bantamnet/twitter_oauth.git
+  remote: git://github.com/bantamnet/twitter_oauth.git
   revision: 41f6a9c7d3b297118215461848756dd9aff8f0d5
   specs:
     twitter_oauth (0.4.3)
