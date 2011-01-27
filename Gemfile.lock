@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/bantamnet/twitter_oauth.git
+  revision: 41f6a9c7d3b297118215461848756dd9aff8f0d5
+  specs:
+    twitter_oauth (0.4.3)
+      json (>= 1.1.9)
+      mime-types (>= 1.16)
+      oauth (>= 0.4.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -15,10 +24,6 @@ GEM
       rack (~> 1.1)
       tilt (~> 1.2)
     tilt (1.2.2)
-    twitter_oauth (0.4.3)
-      json (>= 1.1.9)
-      mime-types (>= 1.16)
-      oauth (>= 0.4.1)
 
 PLATFORMS
   ruby
@@ -30,4 +35,4 @@ DEPENDENCIES
   httparty (~> 0.5.2)
   mime-types (~> 1.16)
   sinatra (~> 1.1.2)
-  twitter_oauth (~> 0.4.3)
+  twitter_oauth (~> 0.4.3)!
