@@ -1,3 +1,5 @@
+require 'bundler/capistrano'
+
 set :repo_user, "sflinter"
 set :user, 'flintero'
 set :domain, 'semantictweet.com'
