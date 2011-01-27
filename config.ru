@@ -1,4 +1,7 @@
-Dir["vendor/gems/*/lib"].each { |path| $:.unshift path } 
+# Dir["vendor/gems/*/lib"].each { |path| $:.unshift path } 
+
+require 'bundler'
+Bundler.require
 
 require 'application'
 
