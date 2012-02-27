@@ -1,5 +1,4 @@
-# Dir["vendor/gems/*/lib"].each { |path| $:.unshift path } 
-
+require 'rubygems'
 require 'bundler'
 Bundler.require
 

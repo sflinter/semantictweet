@@ -1,4 +1,4 @@
-ENV['GEM_PATH'] = '/home/flintero/gems:/usr/lib/ruby/gems/1.8'
+# ENV['GEM_PATH'] = '/home/flintero/gems:/usr/lib/ruby/gems/1.8'
 ENV['RACK_ENV'] ||= 'production'
 
 require 'rubygems'

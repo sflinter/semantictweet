@@ -1,7 +1,7 @@
 require 'rubygems'
 require 'sinatra'
-require 'spec'
-require 'spec/interop/test'
+require 'rspec/core'
+# require 'rspec/interop/test'
 require 'rack/test'
 
 # set test environment
@@ -12,6 +12,6 @@ set :logging, true
 
 require 'application'
 
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
 
 end

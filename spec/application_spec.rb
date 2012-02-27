@@ -7,29 +7,29 @@ describe 'main application' do
     Sinatra::Application.new
   end
 
-  specify 'should show the default index page' do
+  it 'should show the default index page' do
     get '/'
     last_response.should be_ok
   end
 
-  specify 'should show the semantictweet page' do
+  it 'should show the semantictweet page' do
     get '/semantictweet'
     last_response.status.should == 302
   end
 
-  specify 'should show the semantictweet friends page' do
+  it 'should show the semantictweet friends page' do
     get '/semantictweet/friends'
     last_response.should be_ok
     last_response.body.should include 'foaf:PersonalProfileDocument'
   end
 
-  specify 'should show the semantictweet friends page' do
+  it 'should show the semantictweet friends page' do
     get '/semantictweet/followers'
     last_response.should be_ok
     last_response.body.should include 'foaf:PersonalProfileDocument'
   end
 
-  specify 'should show the tag page' do
+  it 'should show the tag page' do
     tags = "%23dev8d+%23bc"
     get "/tags/#{tags}"
     last_response.should be_ok

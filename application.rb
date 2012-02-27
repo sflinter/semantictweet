@@ -7,7 +7,14 @@ require 'tweeter'
 require 'geonames'
 require 'uri'
 
+# Gems related to rate limiting
+require 'rack/throttle'
+require 'dbm'
+
 mime_type :rdf, 'application/rdf+xml'
+
+# Throttle, with a max of 100 queries per hour
+use Rack::Throttle::Hourly, :max => 100, :cache => DBM.new('tmp/throttle')
 
 helpers do
   def valid_uri?(uri = "")
