@@ -1,4 +1,4 @@
-h1.title About
+h1. About
 
 SemanticTweet is a simple "web service":http://en.wikipedia.org/wiki/Web_services that generates a "FOAF":http://www.foaf-project.org/ "RDF document":http://www.w3.org/RDF/ for you from your list of "Twitter":http://twitter.com/ friends and followers (or more specifically, from the 100 most recent of each of your friends and followers). It does this using the "Twitter REST API":http://apiwiki.twitter.com/REST-API-Documentation. This service uses public Twitter data only, and so doesn’t need your Twitter username or password.
 
@@ -9,8 +9,8 @@ One of the benefits of this approach is that it ensures that you don’t have to
 One way you can use this service/document is by embedding it in your blog/website. Just add a line to the @<head>@ section of your template which reads:
 
 <pre><code>
-&lt;link rel="meta" type="application/rdf+xml" title="FOAF"
-href="http://semantictweet.com/your-twitter-screen-name" /&gt;
+<link rel="meta" type="application/rdf+xml" title="FOAF"
+href="http://semantictweet.com/your-twitter-screen-name" />
 </code></pre>
 
 Of course, remember to change the @your-twitter-screen-name@ to your _actual_ Twitter screen name.
