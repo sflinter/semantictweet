@@ -4,7 +4,7 @@ describe 'main application' do
   include Rack::Test::Methods
 
   def app
-    Sinatra::Application.new
+    SemanticTweet
   end
 
   it 'should show the default index page' do
@@ -14,7 +14,7 @@ describe 'main application' do
 
   it 'should show the semantictweet page' do
     get '/semantictweet'
-    last_response.status.should == 302
+    last_response.status.should eq(302)
   end
 
   it 'should show the semantictweet friends page' do

@@ -1,7 +1,5 @@
-require 'rubygems'
 require 'sinatra'
 require 'rspec/core'
-# require 'rspec/interop/test'
 require 'rack/test'
 
 # set test environment
