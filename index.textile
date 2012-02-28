@@ -1,0 +1,6 @@
+h1. Homepage
+
+Welcome to "SemanticTweet":http://semantictweet.com
+
+* about
+* contact
